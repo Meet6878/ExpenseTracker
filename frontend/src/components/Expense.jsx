@@ -20,7 +20,14 @@ const Expense = () => {
   const fetchExpenses = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('https://expense-tracker-mee-git-main-meets-projects-0214bde3.vercel.app/api/v1/get');
+      const res = await axios.get(
+        "https://expense-tracker-mee-git-main-meets-projects-0214bde3.vercel.app/api/v1/get",{
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+          }
+        }
+      );
       setExpenses(res.data);
       calculateTotal(res.data);
     } catch (error) {
@@ -44,10 +51,13 @@ const Expense = () => {
 
     try {
       const res = await axios.post(
-        'https://expense-tracker-mee-git-main-meets-projects-0214bde3.vercel.app/api/v1/create',
+        "https://expense-tracker-mee-git-main-meets-projects-0214bde3.vercel.app/api/v1/create",
         { date, amount, description },
         {
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          },
         }
       );
 
@@ -85,50 +95,50 @@ const Expense = () => {
 
   return (
     <div className="container mx-auto p-4 h-auto max-w-full bg-gray-800 text-white">
-    <h1 className="text-3xl font-bold mb-6 text-center">Expense Tracker</h1>
-    {error && <div className="text-red-500 mb-4">{error}</div>}
-    <Suspense
-      fallback={
-        <div className="h-screen w-full bg-gray-900 flex justify-center items-center">
-          <div className="relative w-48 h-16">
-            <div className="absolute w-5 h-5 rounded-full bg-white left-1/6 animate-bounce delay-0"></div>
-            <div className="absolute w-5 h-5 rounded-full bg-white left-2/5 animate-bounce delay-200"></div>
-            <div className="absolute w-5 h-5 rounded-full bg-white right-1/6 animate-bounce delay-400"></div>
+      <h1 className="text-3xl font-bold mb-6 text-center">Expense Tracker</h1>
+      {error && <div className="text-red-500 mb-4">{error}</div>}
+      <Suspense
+        fallback={
+          <div className="h-screen w-full bg-gray-900 flex justify-center items-center">
+            <div className="relative w-48 h-16">
+              <div className="absolute w-5 h-5 rounded-full bg-white left-1/6 animate-bounce delay-0"></div>
+              <div className="absolute w-5 h-5 rounded-full bg-white left-2/5 animate-bounce delay-200"></div>
+              <div className="absolute w-5 h-5 rounded-full bg-white right-1/6 animate-bounce delay-400"></div>
 
-            <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 left-1/6 top-16 blur-sm animate-pulse delay-0"></div>
-            <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 left-2/5 top-16 blur-sm animate-pulse delay-200"></div>
-            <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 right-1/6 top-16 blur-sm animate-pulse delay-400"></div>
+              <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 left-1/6 top-16 blur-sm animate-pulse delay-0"></div>
+              <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 left-2/5 top-16 blur-sm animate-pulse delay-200"></div>
+              <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 right-1/6 top-16 blur-sm animate-pulse delay-400"></div>
+            </div>
           </div>
-        </div>
-      }
-    >
-      <ExpenseForm addExpense={addExpense} />
-      {loading ? (
-        <div className="h-screen w-full bg-gray-900 flex justify-center items-center">
-          <div className="relative w-48 h-16">
-            <div className="absolute w-5 h-5 rounded-full bg-white left-1/6 animate-bounce delay-0"></div>
-            <div className="absolute w-5 h-5 rounded-full bg-white left-2/5 animate-bounce delay-200"></div>
-            <div className="absolute w-5 h-5 rounded-full bg-white right-1/6 animate-bounce delay-400"></div>
+        }
+      >
+        <ExpenseForm addExpense={addExpense} />
+        {loading ? (
+          <div className="h-screen w-full bg-gray-900 flex justify-center items-center">
+            <div className="relative w-48 h-16">
+              <div className="absolute w-5 h-5 rounded-full bg-white left-1/6 animate-bounce delay-0"></div>
+              <div className="absolute w-5 h-5 rounded-full bg-white left-2/5 animate-bounce delay-200"></div>
+              <div className="absolute w-5 h-5 rounded-full bg-white right-1/6 animate-bounce delay-400"></div>
 
-            <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 left-1/6 top-16 blur-sm animate-pulse delay-0"></div>
-            <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 left-2/5 top-16 blur-sm animate-pulse delay-200"></div>
-            <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 right-1/6 top-16 blur-sm animate-pulse delay-400"></div>
+              <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 left-1/6 top-16 blur-sm animate-pulse delay-0"></div>
+              <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 left-2/5 top-16 blur-sm animate-pulse delay-200"></div>
+              <div className="absolute w-5 h-1 rounded-full bg-black opacity-90 right-1/6 top-16 blur-sm animate-pulse delay-400"></div>
+            </div>
           </div>
-        </div>
-      ) : (
-        <>
-          <ExpenseList expenses={expenses} />
-          <div className="mt-4 text-center">
-            <h2 className="text-xl font-bold">
-              Total Amount: ₹ {totalAmount}
-            </h2>
-          </div>
-          <MonthlyOverview expenses={expenses} />
-        </>
-      )}
-    </Suspense>
-    <ToastContainer />
-  </div>
+        ) : (
+          <>
+            <ExpenseList expenses={expenses} />
+            <div className="mt-4 text-center">
+              <h2 className="text-xl font-bold">
+                Total Amount: ₹ {totalAmount}
+              </h2>
+            </div>
+            <MonthlyOverview expenses={expenses} />
+          </>
+        )}
+      </Suspense>
+      <ToastContainer />
+    </div>
   );
 };
 
