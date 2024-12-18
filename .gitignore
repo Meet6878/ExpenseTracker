@@ -29,3 +29,4 @@ frontend/.vite/
 # Ignore npm package-lock files in both frontend and backend
 frontend/package-lock.json
 backend/package-lock.json
+.vercel
