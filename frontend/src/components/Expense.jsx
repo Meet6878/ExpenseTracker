@@ -16,12 +16,11 @@ const Expense = () => {
   const [totalAmount, setTotalAmount] = useState(0);
 
   const API_URL = import.meta.env.VITE_API_URL;
-
   const fetchExpenses = async () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "expense-tracker-livid-mu.vercel.app/api/v1/get",{
+        "https://expense-tracker-livid-mu.vercel.app/api/v1/get",{
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
@@ -51,7 +50,7 @@ const Expense = () => {
 
     try {
       const res = await axios.post(
-        "expense-tracker-livid-mu.vercel.app/api/v1/create",
+        "https://expense-tracker-livid-mu.vercel.app/api/v1/create",
         { date, amount, description },
         {
           headers: {

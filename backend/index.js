@@ -15,15 +15,17 @@ const OAuth2Strategy = require("passport-google-oauth20").Strategy;
 
 const app = express();
 
+
+const corsOptions = {
+  origin: 'https://expense-tracker-frontend-topaz-rho.vercel.app', 
+  methods: 'GET,POST,PUT,DELETE', 
+  credentials: true, 
+};
+
 dotenv.config();
 app.use(express.json());
 app.use(morgan("dev"));
-app.use(cors({
-    origin:"https://expense-tracker-frontend-topaz-rho.vercel.app",
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-    optionSuccessStatus:200
-}))
+app.use(cors(corsOptions));
 
 app.use("/",()=>{
   console.log("Welcome");
