@@ -19,12 +19,11 @@ const Expense = () => {
   const fetchExpenses = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(
-        "https://expense-tracker-livid-mu.vercel.app/api/v1/get"
-      );
+      const res = await axios.get(`${API_URL}/api/v1/get`);
       setExpenses(res.data);
       calculateTotal(res.data);
     } catch (error) {
+      console.log(error);
       setError("Failed to fetch expenses.");
       toast.error("Failed to fetch expenses.");
     } finally {
@@ -44,11 +43,11 @@ const Expense = () => {
     setError("");
 
     try {
-      const res = await axios.post(
-        "https://expense-tracker-livid-mu.vercel.app/api/v1/create",
-        { date, amount, description },
-        
-      );
+      const res = await axios.post(`${API_URL}/api/v1/create`, {
+        date,
+        amount,
+        description,
+      });
 
       if (res.data?.success) {
         const newExpense = res.data?.newExpense;
