@@ -47,7 +47,12 @@ const Expense = () => {
       const res = await axios.post(
         "https://expense-tracker-livid-mu.vercel.app/api/v1/create",
         { date, amount, description },
-       
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "*",
+          },
+        }
       );
 
       if (res.data?.success) {

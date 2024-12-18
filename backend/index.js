@@ -17,7 +17,7 @@ const app = express();
 
 
 const corsOptions = {
-  origin: 'https://expense-tracker-frontend-topaz-rho.vercel.app', 
+  origin: '*', 
   methods: 'GET,POST,PUT,DELETE', 
   credentials: true, 
 };
