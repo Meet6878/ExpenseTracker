@@ -21,7 +21,7 @@ const Expense = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "https://expense-tracker-mee-git-main-meets-projects-0214bde3.vercel.app/api/v1/get",{
+        "expense-tracker-livid-mu.vercel.app/api/v1/get",{
           headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
@@ -51,7 +51,7 @@ const Expense = () => {
 
     try {
       const res = await axios.post(
-        "https://expense-tracker-mee-git-main-meets-projects-0214bde3.vercel.app/api/v1/create",
+        "expense-tracker-livid-mu.vercel.app/api/v1/create",
         { date, amount, description },
         {
           headers: {
