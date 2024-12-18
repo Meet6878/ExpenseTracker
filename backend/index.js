@@ -19,7 +19,7 @@ dotenv.config();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors({
-    origin:["https://expense-tracker-frontend-topaz-rho.vercel.app"],
+    origin:"https://expense-tracker-frontend-topaz-rho.vercel.app",
     credentials: true,
 
 }))
