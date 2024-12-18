@@ -19,7 +19,7 @@ dotenv.config();
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors({
-    origin:"http://localhost:5174",
+    origin:"expense-tracker-mee.vercel.app",
     credentials: true,
 
 }))

@@ -20,7 +20,7 @@ const Expense = () => {
   const fetchExpenses = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`${API_URL}/api/v1/get`);
+      const res = await axios.get('https://expense-tracker-mee.vercel.app/api/v1/get');
       setExpenses(res.data);
       calculateTotal(res.data);
     } catch (error) {
@@ -44,7 +44,7 @@ const Expense = () => {
 
     try {
       const res = await axios.post(
-        `${API_URL}/api/v1/create`,
+        'https://expense-tracker-mee.vercel.app/api/v1/create',
         { date, amount, description },
         {
           headers: { "Content-Type": "application/json" },
