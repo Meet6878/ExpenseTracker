@@ -5,7 +5,7 @@ const MonthlyOverview = ({ expenses }) => {
     const calculateMonthlyExpenses = () => {
         const monthlyExpenses = {};
 
-        expenses.forEach(expense => {
+        expenses && expenses?.forEach(expense => {
             const date = new Date(expense.date);
             const month = date.toLocaleString('default', { month: 'long' });
             const year = date.getFullYear();

@@ -1,6 +1,5 @@
 const userModel = require("../model/UserModel");
 
-
 const LoginUserController = (req, res) => {
   try {
   } catch (error) {
@@ -11,7 +10,7 @@ const LoginUserController = (req, res) => {
 
 const GetUserController = (req, res) => {
   try {
-     console.log("user in req",req.user);
+    console.log("user in req", req.user);
     const email = req.user.emails[0].value;
     //  console.log("email",email);
     const photos = req.user.photos[0].value;
