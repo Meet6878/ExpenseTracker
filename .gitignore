@@ -4,7 +4,7 @@ backend/node_modules/
 
 # Ignore build directories (for both frontend and backend)
 backend/dist/
-
+/node_modules
 # Environment variable files (if they exist)
 frontend/.env
 backend/.env
